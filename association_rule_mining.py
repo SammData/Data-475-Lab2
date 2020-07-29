@@ -1,4 +1,5 @@
 # %% import dataframe from pickle file
+
 import pandas as pd
 
 df = pd.read_pickle("UK.pkl")
@@ -11,9 +12,8 @@ df.head()
 dataset = df.groupby(["InvoiceNo"]).apply(lambda f: f["Description"].tolist())
 
 
-
-
 # %% apply apriori algorithm to find frequent items and association rules
+
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 
@@ -25,6 +25,7 @@ frequent_itemsets = apriori(df, min_support=0.01, use_colnames=True)
 
 # %% count of frequent itemsets that have more then 1/2/3 items,
 # and the frequent itemsets that has the most items
+
 length = frequent_itemsets["itemsets"].apply(len)
 
 print(f"{(length > 1).sum()} itemsets have more than 1 item")
@@ -57,4 +58,3 @@ plt.xlabel("Support")
 plt.ylabel("lift")
 plt.title("Support vs lift")
 
-# %%

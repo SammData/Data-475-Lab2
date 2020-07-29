@@ -76,4 +76,4 @@ df["GrossRevenue"] = df["Quantity"] * df["UnitPrice"]
 
 df.to_pickle("UK.pkl")
 
-
+# %%
