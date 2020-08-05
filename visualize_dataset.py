@@ -71,6 +71,10 @@ df["YearMonth"] = df["InvoiceDate"].apply(
 
 df["GrossRevenue"] = df["Quantity"] * df["UnitPrice"]
 
+df_year_month = df[["YearMonth", "GrossRevenue"]].groupby("YearMonth").sum()
+df_year_month = df_year_month.reset_index()
+sns.lineplot(data=df_year_month, x="YearMonth", y="GrossRevenue")
+
 # %% save df in pickle format with name "UK.pkl" for next lab activity
 # we are only interested in InvoiceNo, StockCode, Description columns
 
